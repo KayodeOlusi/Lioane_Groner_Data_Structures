@@ -3,7 +3,7 @@
  *  from the end or front of the queue
  */
 
-class Deque {
+export default class Deque {
 	constructor() {
 		this.items = {};
 		this.count = 0;
@@ -120,7 +120,7 @@ function palindromeChecker(aString) {
 	) {
 		return false;
 	}
-	const lowerString = aString.toLocaleLowerCase().split(" ").join("");
+	const lowerString = aString.toLowerCase().split(" ").join("");
 	let isEqual = true;
 	let firstChar, lastChar;
 	for (let i = 0; i < lowerString.length; i++) {
