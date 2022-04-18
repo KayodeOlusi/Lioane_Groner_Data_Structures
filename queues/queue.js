@@ -72,7 +72,7 @@ class Queue {
 
 // const queue = new Queue();
 // console.log(queue.isEmpty());
-// console.log(queue.enqueue('Canila'));
+// console.log(queue.enqueue('mark'));
 // console.log(queue.enqueue('John'));
 // console.log(queue.toString());
 // console.log(queue.isEmpty());
@@ -84,11 +84,11 @@ class Queue {
 
 /**
  * Circular Queue
- * In this game, chidren are organised in a circle, and they pass a hot potato to their neighbor as fast as they can.
+ * In this game, children are organized in a circle, and they pass a hot potato to their neighbor as fast as they can.
  * At a certain point of the game, the hot potato stops being passed around the circle of children, and the child that has the potato
  * is removed from the game or circle.
  *
- * Write a function that shos how the game is played
+ * Write a function that shoes how the game is played
  */
 
 const hotPotato = (elementsList, num) => {
@@ -117,7 +117,7 @@ const hotPotato = (elementsList, num) => {
 const names = [
 	"John",
 	"Jack",
-	"Camila",
+	"Mark",
 	"Ingrid",
 	"Carl",
 	"Pearl",
