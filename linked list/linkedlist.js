@@ -3,14 +3,14 @@
  * known as a pointer or link) that points to the next element.
  */
 
-class LinkedList {
+export class LinkedList {
 	constructor() {
 		this.count = 0;
 		this.head = undefined;
 	}
 }
 
-class Node {
+export class Node {
 	constructor(element) {
 		this.element = element;
 		this.next = undefined;
