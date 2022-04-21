@@ -5,13 +5,6 @@ class DoublyLinkedList extends LinkedList {
 		super(equalFn);
 		this.tail = undefined;
 	}
-}
-
-class DoublyNode extends Node {
-	constructor(element, next, prev) {
-		super(element, next);
-		this.prev = prev;
-	}
 
 	insert(element, index) {
 		if (index >= 0 && index <= this.count) {
@@ -80,5 +73,12 @@ class DoublyNode extends Node {
 		}
 
 		return undefined;
+	}
+}
+
+class DoublyNode extends Node {
+	constructor(element, next, prev) {
+		super(element, next);
+		this.prev = prev;
 	}
 }

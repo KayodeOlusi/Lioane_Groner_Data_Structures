@@ -8,13 +8,6 @@ export class LinkedList {
 		this.count = 0;
 		this.head = undefined;
 	}
-}
-
-export class Node {
-	constructor(element) {
-		this.element = element;
-		this.next = undefined;
-	}
 
 	push(element) {
 		const node = new Node(element);
@@ -38,11 +31,6 @@ export class Node {
 			if (index === 0) {
 				this.head = current.next;
 			} else {
-				// let previous;
-				// for (let i = 0; i < index; i++) {
-				// 	previous = current;
-				// 	current = current.next;
-				// }
 				const previous = this.getElementAt(index - 1);
 				current = previous.next;
 				previous.next = current.next;
@@ -61,14 +49,6 @@ export class Node {
 				node = node.next;
 			}
 			return node;
-			// if(index === 0) {
-			//     return node;
-			// } else {
-			//     for(let i = 0; i < index; i++) {
-			//         node = node.next;
-			//     }
-			//     return node;
-			// }
 		}
 		return undefined;
 	}
@@ -138,5 +118,12 @@ export class Node {
 
 	equalFn(a, b) {
 		return a === b;
+	}
+}
+
+export class Node {
+	constructor(element) {
+		this.element = element;
+		this.next = undefined;
 	}
 }
