@@ -1,6 +1,6 @@
 import { LinkedList, Node } from "./linkedlist";
 
-class DoublyLinkedList extends LinkedList {
+export class DoublyLinkedList extends LinkedList {
 	constructor(equalFn) {
 		super(equalFn);
 		this.tail = undefined;
