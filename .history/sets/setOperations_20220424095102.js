@@ -1,3 +1,5 @@
+import { Set } from "./sets.js";
+
 class SetOperations extends Set {
   union(otherSet) {
     // Initialize an empty union set

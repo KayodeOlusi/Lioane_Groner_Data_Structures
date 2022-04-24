@@ -1,3 +1,5 @@
+const Set = require("Set");
+
 class SetOperations extends Set {
   union(otherSet) {
     // Initialize an empty union set

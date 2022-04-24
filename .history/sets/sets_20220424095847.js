@@ -2,7 +2,7 @@
  * A set is a collection of items that are unordered and consists of unique elements (meaning they cannot be repeated). This data structure uses the same mathematical concept as finite sets, but it is applied to a computer science data structure.
  */
 
-class Set {
+exports.Set =  class Set {
 	constructor() {
 		this.items = {};
 	}
@@ -74,4 +74,4 @@ console.log(set.add(1));
 console.log(set.add(1));
 console.log(set.add(4));
 console.log(set.has(2));
-console.log(set.size());
+// console.log(set.size());

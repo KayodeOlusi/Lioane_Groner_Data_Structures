@@ -1,3 +1,5 @@
+import { Set } from "./sets";
+
 class SetOperations extends Set {
   union(otherSet) {
     // Initialize an empty union set
@@ -20,17 +22,3 @@ class SetOperations extends Set {
     return unionSet;
   }
 }
-
-const setA = new SetOperations();
-const setB = new SetOperations();
-
-setA.add(1)
-setA.add(2)
-setA.add(3)
-
-setB.add(4)
-setB.add(5)
-setB.add(6)
-
-const unionAB = setA.union(setB);
-console.log(unionAB.values)
