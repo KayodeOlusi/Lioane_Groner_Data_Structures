@@ -1,8 +1,9 @@
-import { LinkedList, Node } from "./linkedlist";
+const LinkedList = require("./linkedlist");
+const Node = require("./linkedlist");
 
-export class DoublyLinkedList extends LinkedList {
-	constructor(equalFn) {
-		super(equalFn);
+module.exports = class DoublyLinkedList extends LinkedList {
+	constructor() {
+		super();
 		this.tail = undefined;
 	}
 
@@ -77,8 +78,8 @@ export class DoublyLinkedList extends LinkedList {
 }
 
 class DoublyNode extends Node {
-	constructor(element, next, prev) {
-		super(element, next);
+	constructor(element, prev) {
+		super(element);
 		this.prev = prev;
 	}
 }

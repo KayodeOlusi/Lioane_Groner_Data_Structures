@@ -1,8 +1,8 @@
-import { LinkedList, Node } from "./linkedlist";
+const LinkedList = require("./linkedlist");
 
 class CircularLinkedList extends LinkedList {
-	constructor(equalFn) {
-		super(equalFn);
+	constructor() {
+		super();
 	}
 
 	insert(element, index) {

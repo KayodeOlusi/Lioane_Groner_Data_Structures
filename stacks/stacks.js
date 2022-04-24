@@ -16,7 +16,7 @@ class Stack {
     }
     // push a single element per call
     pushOne (element) {
-        this.items[this.count] = element;  // put the element to be inputed in the first index
+        this.items[this.count] = element;  // put the element to be inputted in the first index
         this.count++;   // increment the count variable to input another element
     }
     // popping elements from the stack (removing and returning the first element)
@@ -24,7 +24,7 @@ class Stack {
         return this.items.pop();
         
         //  if (this.isEmpty()) {
-        //       return undefinded
+        //       return undefined
         //  }
         //   this.count--;
         //   const result = this.items[this.count];

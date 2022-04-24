@@ -1,9 +1,9 @@
 /**
- * A deque data structure(doube-ended queue) is a queue that allows us to insert and remove elements
+ * A deque data structure(double-ended queue) is a queue that allows us to insert and remove elements
  *  from the end or front of the queue
  */
 
-export default class Deque {
+module.exports = class Deque {
 	constructor() {
 		this.items = {};
 		this.count = 0;
@@ -92,19 +92,6 @@ export default class Deque {
 	}
 }
 
-// const deque = new Deque();
-// // console.log(deque.isEmpty());
-// // deque.addBack("John");
-// // console.log(deque.isEmpty());
-// deque.addFront("John");
-// deque.addFront("James");
-// // deque.addBack("Jack");
-// // deque.addBack("Jack");
-// // deque.addBack("Jack");
-// // console.log(deque.toString());
-// console.log(deque.size());
-// // deque.addFront("Anna");
-// console.log(deque.toString());
 
 /**
  * Palindrome Checker with Deque data structure

@@ -1,4 +1,4 @@
-import { LinkedList } from "./linkedlist";
+const LinkedList = require("./linkedlist");
 
 const Compare = {
 	LESS_THAN: -1,

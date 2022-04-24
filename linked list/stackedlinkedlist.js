@@ -1,4 +1,4 @@
-import { DoublyLinkedList } from "./doublelinkedlist";
+const DoublyLinkedList = require("./doublelinkedlist");
 
 class StackedLinkedList {
 	constructor() {

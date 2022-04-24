@@ -71,17 +71,6 @@ class Queue {
 	}
 }
 
-// const queue = new Queue();
-// console.log(queue.isEmpty());
-// console.log(queue.enqueue('mark'));
-// console.log(queue.enqueue('John'));
-// console.log(queue.toString());
-// console.log(queue.isEmpty());
-// console.log(queue.dequeue());
-// console.log(queue.size());
-// console.log(queue.enqueue('Jack'));
-// console.log(queue.size());
-// console.log(queue.isEmpty());
 
 /**
  * Circular Queue

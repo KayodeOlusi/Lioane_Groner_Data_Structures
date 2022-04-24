@@ -3,7 +3,7 @@
  * known as a pointer or link) that points to the next element.
  */
 
-export class LinkedList {
+module.exports = class LinkedList {
 	constructor() {
 		this.count = 0;
 		this.head = undefined;
@@ -121,7 +121,7 @@ export class LinkedList {
 	}
 }
 
-export class Node {
+module.exports = class Node {
 	constructor(element) {
 		this.element = element;
 		this.next = undefined;
