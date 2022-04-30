@@ -100,6 +100,52 @@ class SetOperations extends Set {
   }
 }
 
+
+
+// Adding elements from two sets (Union Set)
+const union = (set1, set2) => {
+  // Initialize a new empty set
+  const unionAB = new Set();
+
+  // Loop through the two sets and add their values to the empty set
+  set1.forEach(value => unionAB.add(value));
+  set2.forEach(value => unionAB.add(value));
+
+  return unionAB;
+};
+
+// Intersection Operation
+const intersection = (set1, set2) => {
+  // Initialize a new empty set
+  const intersectionSet = new Set();
+
+  // Loop through the first set and check if the value is in the second set, then add
+  set1.forEach(value => {
+    if(set2.has(value)) {
+      intersectionSet.add(value);
+    };
+  });
+
+  return intersectionSet;
+} 
+
+// Difference Operation
+const difference = (set1, set2) => {
+  // Initialize a new empty set
+  const differenceAB = new Set();
+
+  // Loop through the first one and check if the value is not included in the second set,
+  // then add
+  set1.forEach(value => {
+    if(!set2.has(value)) {
+      differenceAB.add(value);
+    };
+  });
+  
+  return differenceAB;
+}
+
+
 // Usage
 const setA = new SetOperations();
 const setB = new SetOperations();
