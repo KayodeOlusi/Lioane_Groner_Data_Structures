@@ -44,7 +44,7 @@ module.exports =  class Set {
     // Loop through the set and increment count variable for every single item in the set
     let count = 0;
     for (let key in this.items) {
-      if (this.items.hasOwnProperty(this.items, key)) {
+      if (this.items.hasOwnProperty(key)) {
         count++;
       }
     }
@@ -67,4 +67,5 @@ module.exports =  class Set {
     return values;
   }
 }
+
 
