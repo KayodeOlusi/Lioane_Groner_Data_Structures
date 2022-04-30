@@ -10,18 +10,18 @@ class SetOperations extends Set {
     const unionSet = new Set();
     
     // Get the values from the first set in an array
+    // and loop through the values, add them to the union set
     let values = this.values();
     for(let i = 0; i < values.length; i++) {
-      // Loop through the values and add them to the union set
       unionSet.add(values[i]);
     }
 
-    // Update the values variable of the other set we want to add 
+    // Update the values variable of the other set we want to add,
+    // loop through and add the values to the union set
     values = otherSet.values();
     for(let i = 0; i < values.length; i++) {
-      // Loop through and add the values to the union set
       unionSet.add(values[i]);
-    }
+    };
 
     return unionSet;
   }
@@ -85,9 +85,9 @@ class SetOperations extends Set {
       return false;
     }
 
-    let isSubset = false;
     // Loop through the elements in the initial set and check if
     // all the values are in the other set
+    let isSubset = false;
     this.values().every(value => {
       if(!otherSet.has(value)) {
         isSubset= false;
@@ -127,7 +127,12 @@ const intersection = (set1, set2) => {
   });
 
   return intersectionSet;
-} 
+};
+
+// Using the spread operator for set operations
+const intersectionSet = new Set([...setA].filter(value => setB.has(value)));
+
+
 
 // Difference Operation
 const difference = (set1, set2) => {
@@ -143,10 +148,13 @@ const difference = (set1, set2) => {
   });
   
   return differenceAB;
-}
+};
+
+// Using spread operator for difference set operation
+const differenceCD = new Set([...setA].filter(value => !setB.has(value)));
 
 
-// Usage
+// Using the set class above
 const setA = new SetOperations();
 const setB = new SetOperations();
 const setC = new SetOperations();
