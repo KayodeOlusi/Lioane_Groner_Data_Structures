@@ -52,6 +52,7 @@ class Dictionary {
     };
 
     get(key) {
+        // get a specific key in the table
         const valuePair = this.items[this.toStr(key)];
         return valuePair === null ? undefined : valuePair.value;
 
@@ -64,7 +65,42 @@ class Dictionary {
         // }
     };
 
-    
+    keyValues() {
+        // Get the key values pairs of a table 
+        const valuePair = [];
+        for (const key in this.table) {
+            if(this.hasKey(key)) {
+                valuePair.push(this.table[key]);
+            };
+        };
+        return valuePair;
+
+        // return Object.values(this.table)
+    }
+
+    keys() {
+        // Get an array of keys in the table
+        const keys = [];
+        const valuePairs = this.keyValues();
+        for(let i = 0; i < valuePairs.length; i++) {
+            keys.push(valuePairs[i].key);
+        }
+        return keys;
+
+        // return this.keyValues().map(keyValue => keyValue.key);
+    }
+
+    values() {
+        // Get an array of values in the table
+        const values = [];
+        const valuePairs = this.keyValues();
+        for(let i = 0; i < valuePairs.length; i++) {
+            keys.push(valuePairs[i].values);
+        }
+        return values;
+
+        // return this.keyValues().map(keyValue => keyValue.value);
+    }
 
     
 }
