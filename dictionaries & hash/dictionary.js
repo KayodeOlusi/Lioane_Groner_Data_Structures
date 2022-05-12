@@ -55,10 +55,76 @@ class Dictionary {
         return false;
    }
 
-
    // This method retrieves a value from a dictionary
    get(key) {
        const valuePair = this.table[this.toStrFn(key)];
        return valuePair == null ? undefined : valuePair.value;
+   }
+
+   // Returns an array of all values in the dictionary
+   keyValues() {
+        const valuePairs = [];
+        for(const k in this.table) {
+            if(this.hasKey(k)) valuePairs.push(this.table(k));
+        }
+
+        return valuePairs;
+        // return Object.values(this.table);
+   }
+
+   // Returns an array of keys in the dictionary
+   keys() {
+       const keys = [];
+       const keyValues = this.keyValues(); 
+       for(let i = 0; i < keyValues.length; i++) {
+           keys.push(keyValues[i].key);
+       }
+       return keys;
+       // return this.keyValues().map(valuePair => valuePair.key);
+   }
+
+   // Returns an array of values in the dictionary
+   values() {
+       const values = [];
+       const keyValues = this.keyValues(); 
+       for(let i = 0; i < keyValues.length; i++) {
+           values.push(keyValues[i].value);
+       }
+       return values;
+       // return this.keyValues().map(valuePair => valuePair.value);
+   }
+
+   // Iterating each value-pair of the dictionary with forEach
+   forEach(callbackFn) {
+       const valuePairs = this.keyValues();
+       for(let i = 0; i < valuePairs.length; i++) {
+           const result = callbackFn(valuePairs[i].key, valuePairs[i].value);
+
+           if (result === false) break;
+       }
+   }
+
+   // Returns how many values are stored in the dictionary
+   size() {
+        return Object.keys(this.table).length;
+        // return this.keyValues().length
+   }
+
+   // Checks if the dictionary is empty
+   isEmpty() {
+       return this.size() === 0;
+   }
+
+   // Returns a string of values 
+   toString() {
+       if(this.isEmpty()) return "";
+
+       const valuePairs = this.keyValues();
+       let objectString = `${valuePairs[0].toString()}`;
+
+       for(let i = 1; i < valuePairs.length; i++) {
+           objectString = `${objectString}, ${valuePairs[i].toString()}`
+       }
+       return objectString;
    }
 }
