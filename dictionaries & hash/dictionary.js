@@ -56,10 +56,10 @@ module.exports = class Dictionary {
    }
 
    // This method retrieves a value from a dictionary
-   get(key) {
-       const valuePair = this.table[this.toStrFn(key)];
-       return valuePair == null ? undefined : valuePair.value;
-   }
+//    get(key) {
+//        const valuePair = this.table[this.toStrFn(key)];
+//        return valuePair == null ? undefined : valuePair.value;
+//    }
 
    // Returns an array of all values in the dictionary
    keyValues() {
@@ -130,10 +130,10 @@ module.exports = class Dictionary {
 }
 
 // Usage
-const dictionary = new Dictionary();
+// const dictionary = new Dictionary();
 
-dictionary.set("Gandalf", "gandalf hale")
-dictionary.set("John", "john hale")
-dictionary.set("Jack", "jack hale")
+// dictionary.set("Gandalf", "gandalf hale")
+// dictionary.set("John", "john hale")
+// dictionary.set("Jack", "jack hale")
 
-console.log(dictionary.keyValues());
+// console.log(dictionary.keyValues());

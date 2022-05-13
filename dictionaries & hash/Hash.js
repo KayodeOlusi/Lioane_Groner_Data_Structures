@@ -23,14 +23,14 @@ class HashTable extends Dictionary {
     }
 
     // Returns the key of the value in the hash table
-    hasCode(key) {
+    hashCode(key) {
         return this.loseloseHashCode(key);
     }
 
     // This method inserts a value in the hash table
     put(key, value) {
         if (key != null && value != null) {
-            const position = this.hasCode(key);
+            const position = this.hashCode(key);
             this.table[position] = new ValuePair(key, value);
             return true;
         }
@@ -38,18 +38,19 @@ class HashTable extends Dictionary {
     }
 
     // This method retrieves a value from the hash table
+    // FIXME: Returning undefined for value
     get(key) {
-        const valuePair = this.table[this.hasCode(key)];
+        const valuePair = this.table[this.hashCode(key)];
         return valuePair == null ? undefined : valuePair.value;
     }
     
     // This method removes a value from the hash table
     remove(key) {
-        const hash = this.hasCode(key);
+        const hash = this.hashCode(key);
         const valuePair = this.table[hash];
         if(valuePair != null) {
             delete this.table[hash];
-            return true
+            return true;
         }
         return false;
     }
@@ -57,10 +58,11 @@ class HashTable extends Dictionary {
 
 const hash = new HashTable();
 
-hash.put("Gandalf", "Wizard");
-hash.put("Frodo", "Hobbit");
-hash.put("Sam", "Friend");
+hash.put("Gandalf", "Wizard@gmail.com");
+hash.put("Frodo", "Hobbit@gmail.com");
+hash.put("Sam", "Friend@gmail.com");
 
-console.log(hash.hasCode("Gandalf") + " Gandalf");
-console.log(hash.hasCode("Frodo") + " Hobbit");
-console.log(hash.hasCode("Sam") + " Friend");
+// console.log(hash.hashCode("Gandalf") + " Gandalf");
+// console.log(hash.hashCode("Frodo") + " Hobbit");
+// console.log(hash.hashCode("Sam") + " Friend");
+console.log(hash.get("Gandalf"));
