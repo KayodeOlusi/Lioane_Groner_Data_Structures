@@ -4,7 +4,7 @@
  */
 
 // TODO: Check for "instanceof" keyword
-export const defaultToString = (item) => {
+const defaultToString = (item) => {
     if (item === null) return "NULL";
     if (item === undefined) return "UNDEFINED";
     if (typeof item === "string" || item instanceof String) return `${item}`;
@@ -131,6 +131,7 @@ module.exports = class Dictionary {
 
 // Usage
 const dictionary = new Dictionary();
+
 dictionary.set("Gandalf", "gandalf hale")
 dictionary.set("John", "john hale")
 dictionary.set("Jack", "jack hale")

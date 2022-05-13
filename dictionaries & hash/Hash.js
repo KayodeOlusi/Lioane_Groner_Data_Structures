@@ -36,4 +36,31 @@ class HashTable extends Dictionary {
         }
         return false;
     }
+
+    // This method retrieves a value from the hash table
+    get(key) {
+        const valuePair = this.table[this.hasCode(key)];
+        return valuePair == null ? undefined : valuePair.value;
+    }
+    
+    // This method removes a value from the hash table
+    remove(key) {
+        const hash = this.hasCode(key);
+        const valuePair = this.table[hash];
+        if(valuePair != null) {
+            delete this.table[hash];
+            return true
+        }
+        return false;
+    }
 }
+
+const hash = new HashTable();
+
+hash.put("Gandalf", "Wizard");
+hash.put("Frodo", "Hobbit");
+hash.put("Sam", "Friend");
+
+console.log(hash.hasCode("Gandalf") + " Gandalf");
+console.log(hash.hasCode("Frodo") + " Hobbit");
+console.log(hash.hasCode("Sam") + " Friend");
