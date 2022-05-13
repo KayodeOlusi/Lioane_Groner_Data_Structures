@@ -2,11 +2,21 @@
  * Hashing consists of finding a value in a data structure in the shortest time possible
  */
 const Dictionary = require("./Dictionary");
-const ValuePair = require("./Dictionary");
+class ValuePair {
+    constructor(key, value) {
+        this.key = key;
+        this.value = value;
+    }
 
-class HashTable extends Dictionary {
-    constructor(toStrFn, table) {
-        super(toStrFn, table);
+    // Return an array of key-value
+    toString() {
+        return [`#${this.key}: ${this.value}`];
+    }
+}
+
+module.exports = class HashTable extends Dictionary {
+    constructor(table, toStrFn) {
+        super(table, toStrFn);
     }
 
     // This method generates a code/number as a key to store a value in the hash table
@@ -38,7 +48,6 @@ class HashTable extends Dictionary {
     }
 
     // This method retrieves a value from the hash table
-    // FIXME: Returning undefined for value
     get(key) {
         const valuePair = this.table[this.hashCode(key)];
         return valuePair == null ? undefined : valuePair.value;
@@ -56,13 +65,15 @@ class HashTable extends Dictionary {
     }
 }
 
-const hash = new HashTable();
+// Usage
+// const hash = new HashTable();
 
-hash.put("Gandalf", "Wizard@gmail.com");
-hash.put("Frodo", "Hobbit@gmail.com");
-hash.put("Sam", "Friend@gmail.com");
+// hash.put("Gandalf", "Wizard@gmail.com");
+// hash.put("Frodo", "Hobbit@gmail.com");
+// hash.put("Sam", "Friend@gmail.com");
 
 // console.log(hash.hashCode("Gandalf") + " Gandalf");
 // console.log(hash.hashCode("Frodo") + " Hobbit");
 // console.log(hash.hashCode("Sam") + " Friend");
-console.log(hash.get("Gandalf"));
+// console.log(hash.get("Gandalf"));
+

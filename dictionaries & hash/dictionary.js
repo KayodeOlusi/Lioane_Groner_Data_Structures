@@ -3,7 +3,6 @@
  *  where the key could be used to find a particular element.
  */
 
-// TODO: Check for "instanceof" keyword
 const defaultToString = (item) => {
     if (item === null) return "NULL";
     if (item === undefined) return "UNDEFINED";
@@ -56,10 +55,10 @@ module.exports = class Dictionary {
    }
 
    // This method retrieves a value from a dictionary
-//    get(key) {
-//        const valuePair = this.table[this.toStrFn(key)];
-//        return valuePair == null ? undefined : valuePair.value;
-//    }
+   get(key) {
+       const valuePair = this.table[this.toStrFn(key)];
+       return valuePair == null ? undefined : valuePair.value;
+   }
 
    // Returns an array of all values in the dictionary
    keyValues() {
