@@ -4,7 +4,7 @@
  */
 
 // TODO: Check for "instanceof" keyword
-const defaultToString = (item) => {
+export const defaultToString = (item) => {
     if (item === null) return "NULL";
     if (item === undefined) return "UNDEFINED";
     if (typeof item === "string" || item instanceof String) return `${item}`;
@@ -12,7 +12,7 @@ const defaultToString = (item) => {
     return item.toString();
 };
 
-class ValuePair {
+module.exports =  class ValuePair {
     constructor(key, value) {
         this.key = key;
         this.value = value;
@@ -24,7 +24,7 @@ class ValuePair {
     }
 }
 
-class Dictionary {
+module.exports = class Dictionary {
    constructor(toStrFn = defaultToString) {
        this.table = {};
        this.toStrFn = toStrFn;
