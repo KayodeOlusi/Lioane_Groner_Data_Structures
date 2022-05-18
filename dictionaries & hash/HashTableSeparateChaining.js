@@ -80,5 +80,105 @@ class HashTableSeparateChaining extends HashTable {
         return false;
     }
 
-    
+    // ************Alternative using Linear Probing to tackle collisions*********************/
+
+    // A Better way to put element in the table
+    // without the use of linkedlist
+    put(key, value) {
+        // CHeck if key and value are valid
+        if (key != null && value != null) {
+            const position = this.hashCode(key);
+
+            // Check if the position to fix the valuePair is free, insert if free
+            // If not free, move to next index and check for a free position
+            // Then insert
+            if (this.table[position] == null) {
+                this.table[position] = new ValuePair(key, value);
+            } else {
+                let index = position + 1;
+                while (this.table[index] != null) {
+                    index++;
+                }
+                this.table[index] = new ValuePair(key, value);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    // A Better way to get element in the table
+    // without the use of linkedlist
+    get(key) {
+        const position = this.hashCode(key);
+
+        // Check if the position is not empty, if the element in the 
+        // position is the key value, return  
+        if(this.table[position] != null) {
+            if(this.table[position].key === key) return this.table[position].value;
+
+            // Increment the position to move to the next node or space
+            // Check if the key in the node/space is equal to the key inputted
+            // If so, return
+            let index = position + 1;
+            while (this.table[index] != null && this.table[index].key != key) {
+                index++;
+            }
+            if(this.table[index] != null && this.table[index].key === key) {
+                return this.table[index].value;
+            }
+        }
+        return undefined;
+    }
+
+    // A Better way to get element in the table
+    // without the use of linkedlist
+    remove(key) {
+        const position = this.hashCode(key);
+
+        // Check if the position is not empty, if the element in the 
+        // position is the key value, delete node/space  
+        if(this.table[position] != null) {
+            if(this.table[position].key === key) {
+                delete this.table[position];
+                this.verifyRemoveSideEffect(key, position);
+            }
+
+            // Increment the position to move to the next node or space
+            // Check if the key in the node/space is equal to the key inputted
+            // If so, delete node/space
+            let index = position + 1;
+            while (this.table[index] != null && this.table[index].key != key) {
+                index++;
+            }
+
+            if(this.table[index] != null && this.table[index].key == key) {
+                delete this.table[index];
+                this.verifyRemoveSideEffect(key, index);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // This helper method helps us to shift the node/values backwards
+    // to avoid empty spaces/positions 
+    verifyRemoveSideEffect(key, removedPosition) {
+        const hash = this.hashCode(key);
+        let index = removedPosition + 1;
+
+        // Check if the next space is not empty. if true, 
+        // Check if the next node key/value/position value is less than the
+        // removed key/value/position value. if true, swap their position 
+        // and delete the next value while incrementing the position of the 
+        // removed value 
+        while (this.table[index] != null) {
+            const posHash = this.hashCode(this.table[index].key);
+            if (posHash <= hash || posHash <= removedPosition) {
+                this.table[removedPosition] = this.table[index];
+                delete this.table[index];
+                removedPosition = index;
+            }
+            index++;
+        }
+    }
 }

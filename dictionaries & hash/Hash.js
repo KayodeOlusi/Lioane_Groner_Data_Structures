@@ -19,7 +19,20 @@ module.exports = class HashTable extends Dictionary {
         super(table, toStrFn);
     }
 
-    // This method generates a code/number as a key to store a value in the hash table
+    // A better method to generate a code/number as a key
+    // to store a value in the has table to avoid key collisions
+    djb2HashCode(key) {
+        const tableKey = this.toStrFn(key);
+        let hash = 5381;
+        for (let i = 0 ; i < tableKey.length; i++) {
+            hash = (hash * 33) + tableKey.charCodeAt(i);
+        }
+
+        return hash % 1013;
+    }
+
+    // This method generates a code/number as a key
+    // to store a value in the hash table
     loseloseHashCode(key) {
         if (typeof key === "number") return key;
 
