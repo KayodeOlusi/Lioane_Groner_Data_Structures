@@ -40,17 +40,44 @@ class HashTableSeparateChaining extends HashTable {
 
     // Get a value from the hash table
     get(key) {
+        // Get the positions and the list
         const position = this.hashCode(key);
         const linkedList = this.table[position];
 
+        // Loop through the linkedList instance of table valuePair
+        // and find the value with the key 
         if (linkedList != null && !linkedList.isEmpty()) {
             let current = linkedList.getHead();
             while (current != null) {
                 if (current.element.key === key) return current.element.value;
+                current = current.next;
             }
-            current = current.next;
         }
         return undefined;
+    }
+
+    // Remove a value from the table
+    remove(key) {
+        // Get the positions and the list
+        const position = this.hashCode(key);
+        const linkedList = this.table[position];
+
+        // Check if linkedList instance of table valuePair is not empty
+        // and loop through it to find the element to delete 
+        if (linkedList != null && !linkedList.isEmpty()) {
+            let current = linkedList.getHead();
+            while (current != null) {
+                if (current.element.key === key) {
+                    linkedList.remove(current.element);
+                    if (linkedList.isEmpty()) {
+                        delete this.table[position];
+                    }
+                    return true;
+                }
+                current = current.next;
+            }
+        }
+        return false;
     }
 
     
