@@ -4,7 +4,7 @@ const Compare = {
     EQUALS: 0
 };
 
-const printNode = (value) => console.log(value); 
+const printNode = (value) => console.log(value);
 
 function defaultCompare(a, b) {
     if (a === b) {
@@ -52,15 +52,48 @@ class BinarySearchTree {
         }
     }
 
-    inOrderTraverse (callback) {
+    // An in-order traversal visits all the nodes of a BST in an ascending order
+    // It takes in a callback function to perform something with each node
+    inOrderTraverse(callback) {
         this.inOrderTraverseNode(this.root, callback);
     }
 
-    inOrderTraverseNode (node, callback) {
+    // inOrderTraverse helper function
+    inOrderTraverseNode(node, callback) {
         if (node != null) {
             this.inOrderTraverseNode(node.left, callback);
             callback(node.key);
             this.inOrderTraverseNode(node.right, callback);
+        }
+    }
+
+    // A pre-order traversal visits the node prior to its descendants.
+    // It takes in a callback function to perform something with each node
+    preOrderTraverse(callback) {
+        this.preOrderTraverseNode(this.root, callback);
+    }
+
+    // pre-order traverse helper function
+    preOrderTraverseNode(node, callback) {
+        if (node != null) {
+            callback(node.key);
+            this.preOrderTraverseNode(node.left, callback);
+            this.preOrderTraverseNode(node.right, callback);
+        }
+    }
+
+    // A post-order traversal visits the node after it visits its descendants.
+    // It takes in a callback function to perform something with each node
+    postOrderTraverse(callback) {
+        this.postOrderTraverseNode(this.root, callback);
+    }
+
+    // post-order traverse callback
+    postOrderTraverseNode(node, callback) {
+        if (node != null) {
+            this.postOrderTraverseNode(node.left, callback);
+            this.postOrderTraverseNode(node.right, callback);
+            callback(node.key);
         }
     }
 }
@@ -81,4 +114,4 @@ tree.insert(20)
 tree.insert(18)
 tree.insert(25)
 
-tree.inOrderTraverse(printNode);
+console.log(tree.preOrderTraverse(printNode));
