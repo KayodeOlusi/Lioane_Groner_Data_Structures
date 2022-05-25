@@ -46,8 +46,14 @@ class BinarySearchTree {
         return this.maxNode(this.root);
     }
 
+    // Search for a value in the tree 
     search(key) {
         return this.searchNode(this.root, key);
+    }
+
+    // Remove a value from the tree
+    remove(key) {
+        return this.removeNode(this.root, key);
     }
 
     /** ******************Helper Functions******************************/
@@ -92,6 +98,38 @@ class BinarySearchTree {
             return this.searchNode(node.right, key);
         } else {
             return true;
+        }
+    }
+
+    removeNode(node, key) {
+        if (node == null) return null;
+
+        if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
+            node.left = this.removeNode(node.left, key);
+            return node;
+        } else if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
+            node.right = this.removeNode(node.right, key);
+            return node;
+        } else {
+            // Key is equal to the node
+            // Case 1
+            if (node.left == null && node.right == null) {
+                node = null;
+                return node;
+            }
+            // Case 2
+            if (node.left == null) {
+                node = node.right;
+                return node;
+            } else if (node.right == null) {
+                node = node.left;
+                return node;
+            }
+            // Case 3
+            const aux = this.minNode(node.right);
+            node.key = aux.key;
+            node.right = this.removeNode(node.right, aux.key);
+            return node;
         }
     }
 
