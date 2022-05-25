@@ -36,6 +36,37 @@ class BinarySearchTree {
         }
     }
 
+    // Get minimum value in a tree
+    min() {
+        return this.minNode(this.root);
+    }
+
+    // Get maximum value in a tree
+    max() {
+        return this.maxNode(this.root);
+    }
+
+    search(key) {
+        return this.searchNode(this.root, key);
+    }
+
+    /** ******************Helper Functions******************************/
+    maxNode(node) {
+        let current = node;
+        while (current != null && current.right != null) {
+            current = current.right;
+        }
+        return current;
+    }
+
+    minNode(node) {
+        let current = node;
+        while (current != null && current.left != null) {
+            current = current.left;
+        }
+        return current;
+    }
+
     insertNode(node, key) {
         if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
             if (node.left == null) {
@@ -49,6 +80,18 @@ class BinarySearchTree {
             } else {
                 this.insertNode(node.right, key);
             }
+        }
+    }
+
+    searchNode(node, key) {
+        if(node == null) return false;
+
+        if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
+            return this.searchNode(node.left, key);
+        } else if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
+            return this.searchNode(node.right, key);
+        } else {
+            return true;
         }
     }
 
@@ -114,4 +157,7 @@ tree.insert(20)
 tree.insert(18)
 tree.insert(25)
 
-console.log(tree.preOrderTraverse(printNode));
+// console.log(tree.preOrderTraverse(printNode));
+console.log(tree.search(3) ? "key found" : "key not found")
+console.log(tree.search(22) ? "key found" : "key not found")
+console.log(tree.search(39) ? "key found" : "key not found")
