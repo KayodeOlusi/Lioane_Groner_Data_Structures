@@ -5,7 +5,6 @@
  *  is that the values and keys methods return an Iterator instead of an array
  *  with the key and values
  */
-
 const map = new Map();
 
 map.set('Gandalf', 'gandalf@email.com');
