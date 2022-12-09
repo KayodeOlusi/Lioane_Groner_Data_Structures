@@ -98,7 +98,6 @@ module.exports = class Dictionary {
        const valuePairs = this.keyValues();
        for(let i = 0; i < valuePairs.length; i++) {
            const result = callbackFn(valuePairs[i].key, valuePairs[i].value);
-
            if (result === false) break;
        }
    }
