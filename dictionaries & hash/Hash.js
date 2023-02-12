@@ -3,80 +3,80 @@
  */
 const Dictionary = require("./Dictionary");
 class ValuePair {
-    constructor(key, value) {
-        this.key = key;
-        this.value = value;
-    }
+  constructor(key, value) {
+    this.key = key;
+    this.value = value;
+  }
 
-    // Return an array of key-value
-    toString() {
-        return [`#${this.key}: ${this.value}`];
-    }
+  // Return an array of key-value
+  toString() {
+    return [`#${this.key}: ${this.value}`];
+  }
 }
 
 module.exports = class HashTable extends Dictionary {
-    constructor(table, toStrFn) {
-        super(table, toStrFn);
+  constructor(table, toStrFn) {
+    super(table, toStrFn);
+  }
+
+  // A better method to generate a code/number as a key
+  // to store a value in the has table to avoid key collisions
+  djb2HashCode(key) {
+    const tableKey = this.toStrFn(key);
+    let hash = 5381;
+    for (let i = 0; i < tableKey.length; i++) {
+      hash = hash * 33 + tableKey.charCodeAt(i);
     }
 
-    // A better method to generate a code/number as a key
-    // to store a value in the has table to avoid key collisions
-    djb2HashCode(key) {
-        const tableKey = this.toStrFn(key);
-        let hash = 5381;
-        for (let i = 0 ; i < tableKey.length; i++) {
-            hash = (hash * 33) + tableKey.charCodeAt(i);
-        }
+    return hash % 1013;
+  }
 
-        return hash % 1013;
+  // This method generates a code/number as a key
+  // to store a value in the hash table
+  loseloseHashCode(key) {
+    if (typeof key === "number") return key;
+
+    const tableKey = this.toStrFn(key);
+    let hash = 0;
+    for (let i = 0; i < tableKey.length; i++) {
+      hash += tableKey.charCodeAt(i);
     }
 
-    // This method generates a code/number as a key
-    // to store a value in the hash table
-    loseloseHashCode(key) {
-        if (typeof key === "number") return key;
+    return hash % 37;
+  }
 
-        const tableKey = this.toStrFn(key);
-        let hash = 0;
-        for (let i = 0; i < tableKey.length; i++) {
-            hash += tableKey.charCodeAt(i);
-        }
+  // Returns the key of the value in the hash table
+  hashCode(key) {
+    return this.loseloseHashCode(key);
+  }
 
-        return hash % 37;
+  // This method inserts a value in the hash table
+  put(key, value) {
+    if (key != null && value != null) {
+      const position = this.hashCode(key);
+      this.table[position] = new ValuePair(key, value);
+      return true;
     }
+    return false;
+  }
 
-    // Returns the key of the value in the hash table
-    hashCode(key) {
-        return this.loseloseHashCode(key);
-    }
+  // This method retrieves a value from the hash table
+  get(key) {
+    const valuePair = this.table[this.hashCode(key)];
+    return valuePair == null ? undefined : valuePair.value;
+  }
 
-    // This method inserts a value in the hash table
-    put(key, value) {
-        if (key != null && value != null) {
-            const position = this.hashCode(key);
-            this.table[position] = new ValuePair(key, value);
-            return true;
-        }
-        return false;
+  // This method removes a value from the hash table
+  remove(key) {
+    const hash = this.hashCode(key);
+    const valuePair = this.table[hash];
+    if (valuePair != null) {
+      delete this.table[hash];
+      return true;
     }
-
-    // This method retrieves a value from the hash table
-    get(key) {
-        const valuePair = this.table[this.hashCode(key)];
-        return valuePair == null ? undefined : valuePair.value;
-    }
-    
-    // This method removes a value from the hash table
-    remove(key) {
-        const hash = this.hashCode(key);
-        const valuePair = this.table[hash];
-        if(valuePair != null) {
-            delete this.table[hash];
-            return true;
-        }
-        return false;
-    }
-}
+    return false;
+  }
+};
 
 // Usage
 // const hash = new HashTable();
@@ -89,4 +89,3 @@ module.exports = class HashTable extends Dictionary {
 // console.log(hash.hashCode("Frodo") + " Hobbit");
 // console.log(hash.hashCode("Sam") + " Friend");
 // console.log(hash.get("Gandalf"));
-

@@ -1,183 +1,183 @@
 const Compare = {
-    LESS_THAN: -1,
-    BIGGER_THAN: 1,
-    EQUALS: 0
+  LESS_THAN: -1,
+  BIGGER_THAN: 1,
+  EQUALS: 0,
 };
 
-const printNode = (value) => console.log(value);
+const printNode = value => console.log(value);
 
 function defaultCompare(a, b) {
-    if (a === b) {
-      return Compare.EQUALS;
-    }
-    return a < b ? Compare.LESS_THAN : Compare.BIGGER_THAN;
+  if (a === b) {
+    return Compare.EQUALS;
+  }
+  return a < b ? Compare.LESS_THAN : Compare.BIGGER_THAN;
 }
 
 module.exports = class Node {
-    constructor (key) {
-        this.key = key;     // Value of node
-        this.left = null;   // Left child
-        this.right = null;  // Right child
-    }
-}
+  constructor(key) {
+    this.key = key; // Value of node
+    this.left = null; // Left child
+    this.right = null; // Right child
+  }
+};
 
 module.exports = class BinarySearchTree {
-    constructor (compareFn = defaultCompare) {
-        this.compareFn = compareFn;
-        this.root = null;
+  constructor(compareFn = defaultCompare) {
+    this.compareFn = compareFn;
+    this.root = null;
+  }
+
+  // Insert a node into the tree
+  insert(key) {
+    if (this.root == null) {
+      this.root = new Node(key);
+    } else {
+      this.insertNode(this.root, key);
     }
+  }
 
-    // Insert a node into the tree
-    insert(key) {
-        if(this.root == null) {
-            this.root = new Node(key);
-        } else {
-            this.insertNode(this.root, key);
-        }
+  // Get minimum value in a tree
+  min() {
+    return this.minNode(this.root);
+  }
+
+  // Get maximum value in a tree
+  max() {
+    return this.maxNode(this.root);
+  }
+
+  // Search for a value in the tree
+  search(key) {
+    return this.searchNode(this.root, key);
+  }
+
+  // Remove a value from the tree
+  remove(key) {
+    return this.removeNode(this.root, key);
+  }
+
+  /** ******************Helper Functions******************************/
+  maxNode(node) {
+    let current = node;
+    while (current != null && current.right != null) {
+      current = current.right;
     }
+    return current;
+  }
 
-    // Get minimum value in a tree
-    min() {
-        return this.minNode(this.root);
+  minNode(node) {
+    let current = node;
+    while (current != null && current.left != null) {
+      current = current.left;
     }
+    return current;
+  }
 
-    // Get maximum value in a tree
-    max() {
-        return this.maxNode(this.root);
+  insertNode(node, key) {
+    if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
+      if (node.left == null) {
+        node.left = new Node(key);
+      } else {
+        this.insertNode(node.left, key);
+      }
+    } else {
+      if (node.right == null) {
+        node.right = new Node(key);
+      } else {
+        this.insertNode(node.right, key);
+      }
     }
+  }
 
-    // Search for a value in the tree 
-    search(key) {
-        return this.searchNode(this.root, key);
+  searchNode(node, key) {
+    if (node == null) return false;
+
+    if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
+      return this.searchNode(node.left, key);
+    } else if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
+      return this.searchNode(node.right, key);
+    } else {
+      return true;
     }
+  }
 
-    // Remove a value from the tree
-    remove(key) {
-        return this.removeNode(this.root, key);
+  removeNode(node, key) {
+    if (node == null) return null;
+
+    if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
+      node.left = this.removeNode(node.left, key);
+      return node;
+    } else if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
+      node.right = this.removeNode(node.right, key);
+      return node;
+    } else {
+      // Key is equal to the node
+      // Case 1
+      if (node.left == null && node.right == null) {
+        node = null;
+        return node;
+      }
+      // Case 2
+      if (node.left == null) {
+        node = node.right;
+        return node;
+      } else if (node.right == null) {
+        node = node.left;
+        return node;
+      }
+      // Case 3
+      const aux = this.minNode(node.right);
+      node.key = aux.key;
+      node.right = this.removeNode(node.right, aux.key);
+      return node;
     }
+  }
 
-    /** ******************Helper Functions******************************/
-    maxNode(node) {
-        let current = node;
-        while (current != null && current.right != null) {
-            current = current.right;
-        }
-        return current;
+  // An in-order traversal visits all the nodes of a BST in an ascending order
+  // It takes in a callback function to perform something with each node
+  inOrderTraverse(callback) {
+    this.inOrderTraverseNode(this.root, callback);
+  }
+
+  // inOrderTraverse helper function
+  inOrderTraverseNode(node, callback) {
+    if (node != null) {
+      this.inOrderTraverseNode(node.left, callback);
+      callback(node.key);
+      this.inOrderTraverseNode(node.right, callback);
     }
+  }
 
-    minNode(node) {
-        let current = node;
-        while (current != null && current.left != null) {
-            current = current.left;
-        }
-        return current;
+  // A pre-order traversal visits the node prior to its descendants.
+  // It takes in a callback function to perform something with each node
+  preOrderTraverse(callback) {
+    this.preOrderTraverseNode(this.root, callback);
+  }
+
+  // pre-order traverse helper function
+  preOrderTraverseNode(node, callback) {
+    if (node != null) {
+      callback(node.key);
+      this.preOrderTraverseNode(node.left, callback);
+      this.preOrderTraverseNode(node.right, callback);
     }
+  }
 
-    insertNode(node, key) {
-        if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
-            if (node.left == null) {
-                node.left = new Node(key);
-            } else {
-                this.insertNode(node.left, key);
-            }
-        } else {
-            if (node.right == null) {
-                node.right = new Node(key);
-            } else {
-                this.insertNode(node.right, key);
-            }
-        }
+  // A post-order traversal visits the node after it visits its descendants.
+  // It takes in a callback function to perform something with each node
+  postOrderTraverse(callback) {
+    this.postOrderTraverseNode(this.root, callback);
+  }
+
+  // post-order traverse callback
+  postOrderTraverseNode(node, callback) {
+    if (node != null) {
+      this.postOrderTraverseNode(node.left, callback);
+      this.postOrderTraverseNode(node.right, callback);
+      callback(node.key);
     }
-
-    searchNode(node, key) {
-        if(node == null) return false;
-
-        if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
-            return this.searchNode(node.left, key);
-        } else if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
-            return this.searchNode(node.right, key);
-        } else {
-            return true;
-        }
-    }
-
-    removeNode(node, key) {
-        if (node == null) return null;
-
-        if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
-            node.left = this.removeNode(node.left, key);
-            return node;
-        } else if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
-            node.right = this.removeNode(node.right, key);
-            return node;
-        } else {
-            // Key is equal to the node
-            // Case 1
-            if (node.left == null && node.right == null) {
-                node = null;
-                return node;
-            }
-            // Case 2
-            if (node.left == null) {
-                node = node.right;
-                return node;
-            } else if (node.right == null) {
-                node = node.left;
-                return node;
-            }
-            // Case 3
-            const aux = this.minNode(node.right);
-            node.key = aux.key;
-            node.right = this.removeNode(node.right, aux.key);
-            return node;
-        }
-    }
-
-    // An in-order traversal visits all the nodes of a BST in an ascending order
-    // It takes in a callback function to perform something with each node
-    inOrderTraverse(callback) {
-        this.inOrderTraverseNode(this.root, callback);
-    }
-
-    // inOrderTraverse helper function
-    inOrderTraverseNode(node, callback) {
-        if (node != null) {
-            this.inOrderTraverseNode(node.left, callback);
-            callback(node.key);
-            this.inOrderTraverseNode(node.right, callback);
-        }
-    }
-
-    // A pre-order traversal visits the node prior to its descendants.
-    // It takes in a callback function to perform something with each node
-    preOrderTraverse(callback) {
-        this.preOrderTraverseNode(this.root, callback);
-    }
-
-    // pre-order traverse helper function
-    preOrderTraverseNode(node, callback) {
-        if (node != null) {
-            callback(node.key);
-            this.preOrderTraverseNode(node.left, callback);
-            this.preOrderTraverseNode(node.right, callback);
-        }
-    }
-
-    // A post-order traversal visits the node after it visits its descendants.
-    // It takes in a callback function to perform something with each node
-    postOrderTraverse(callback) {
-        this.postOrderTraverseNode(this.root, callback);
-    }
-
-    // post-order traverse callback
-    postOrderTraverseNode(node, callback) {
-        if (node != null) {
-            this.postOrderTraverseNode(node.left, callback);
-            this.postOrderTraverseNode(node.right, callback);
-            callback(node.key);
-        }
-    }
-}
+  }
+};
 
 // const tree = new BinarySearchTree();
 // tree.insert(11)
@@ -195,7 +195,7 @@ module.exports = class BinarySearchTree {
 // tree.insert(18)
 // tree.insert(25)
 
-// console.log(tree.preOrderTraverse(printNode)); 
+// console.log(tree.preOrderTraverse(printNode));
 // console.log(tree.search(3) ? "key found" : "key not found")
 // console.log(tree.search(22) ? "key found" : "key not found")
 // console.log(tree.search(39) ? "key found" : "key not found")

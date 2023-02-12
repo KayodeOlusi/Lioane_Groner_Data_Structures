@@ -15,7 +15,7 @@ num *= 3;
 num /= 2;
 num %= 2;
 
-/**                                                 
+/**
  *  + = addition
  *  - = subtraction
  *  * = multiply
@@ -36,7 +36,7 @@ num %= 2;
  *      <= Less Than Or Equal To
  *      && And
  *      || Or
- *      ! Not 
+ *      ! Not
  */
 
 // 'typeof' operator returns the type of variable or expression
