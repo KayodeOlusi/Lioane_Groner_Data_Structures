@@ -18,7 +18,6 @@ class StackedLinkedList {
 
   peek() {
     if (this.isEmpty()) return undefined;
-
     return this.items.getElementAt(this.size() - 1).element;
   }
 

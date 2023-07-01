@@ -17,7 +17,7 @@ function equalCompare(a, b) {
   return a === b;
 }
 
-class SortedLinkedList extends LinkedList {
+module.exports = class SortedLinkedList extends LinkedList {
   constructor(equalFn = equalCompare, compareFn = defaultCompare) {
     this.equalFn = equalFn;
     this.compareFn = compareFn;
@@ -44,4 +44,4 @@ class SortedLinkedList extends LinkedList {
     }
     return i;
   }
-}
+};

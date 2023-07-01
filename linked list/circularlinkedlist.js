@@ -1,6 +1,6 @@
 const LinkedList = require("./linkedlist");
 
-class CircularLinkedList extends LinkedList {
+module.exports = class CircularLinkedList extends LinkedList {
   constructor() {
     super();
   }
@@ -58,4 +58,4 @@ class CircularLinkedList extends LinkedList {
     }
     return undefined;
   }
-}
+};
