@@ -22,18 +22,6 @@ class Stack {
   // popping elements from the stack (removing and returning the first element)
   pop() {
     return this.items.pop();
-
-    //  if (this.isEmpty()) {
-    //       return undefined
-    //  }
-    //   this.count--;
-    //   const result = this.items[this.count];
-    //   delete this.items[this.count];
-    //   delete result;
-
-    // while(!this.isEmpty()) {
-    //     this.items.pop();
-    // }
   }
   // a custom method (for returning last element added to stack)
   peek() {
@@ -65,15 +53,6 @@ class Stack {
     return objString;
   }
 }
-
-let stack = new Stack();
-// console.log(stack.push(1, 2, 3, 4, 5));
-// console.log(stack.pop());
-// console.log(stack.toString());
-
-// console.log(Object.getOwnPropertyNames(stack))
-// console.log(Object.keys(stack))
-// console.log(stack.items)
 
 // **************************************************
 // Underscore naming convention
