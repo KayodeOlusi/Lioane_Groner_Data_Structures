@@ -70,4 +70,27 @@ function decimalToBinary(decNumber) {
   return result;
 }
 
+function baseConverter(decNumber, base) {
+  let res = "";
+  let remainder;
+  const stack = new Stack();
+  let number = decNumber;
+  const digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+  if (!(base >= 2 && base <= 36)) return "";
+
+  while (number > 0) {
+    remainder = Math.floor(remainder % base);
+    stack.push(remainder);
+
+    number = Math.floor(number / 2);
+  }
+
+  while (!stack.isEmpty()) {
+    res += digits[stack.pop()];
+  }
+
+  return res;
+}
+
 console.log(decimalToBinary(233));
