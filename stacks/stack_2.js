@@ -42,7 +42,7 @@ class Stack {
   toString() {
     if (this.isEmpty()) return undefined;
 
-    let objString = `${this.isEmpty[0]}`;
+    let objString = `${this.items[0]}`;
     for (let i = 1; i < this.count; i++) {
       objString = `${objString}, ${this.items[i]}`;
     }
@@ -80,10 +80,10 @@ function baseConverter(decNumber, base) {
   if (!(base >= 2 && base <= 36)) return "";
 
   while (number > 0) {
-    remainder = Math.floor(remainder % base);
+    remainder = Math.floor(number % base);
     stack.push(remainder);
 
-    number = Math.floor(number / 2);
+    number = Math.floor(number / base);
   }
 
   while (!stack.isEmpty()) {
