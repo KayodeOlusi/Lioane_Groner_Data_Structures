@@ -80,3 +80,7 @@ class Deque {
     return objString;
   }
 }
+
+module.exports = {
+  Deque,
+};
