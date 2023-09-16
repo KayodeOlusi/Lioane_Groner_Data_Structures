@@ -80,3 +80,7 @@ class DoublyLinkedList extends LinkedList {
     return undefined;
   }
 }
+
+module.exports = {
+  DoublyLinkedList,
+};
