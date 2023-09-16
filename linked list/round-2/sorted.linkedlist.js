@@ -39,3 +39,14 @@ class SortedLinkedList extends LinkedList {
     return i;
   }
 }
+
+const linkedList = new LinkedList();
+linkedList.push(1);
+linkedList.push(3);
+linkedList.push(2);
+linkedList.push(5);
+linkedList.push(4);
+linkedList.insert(0, 3);
+console.log(linkedList.toString());
+console.log(linkedList.remove(1));
+console.log(linkedList.toString());
