@@ -24,7 +24,7 @@ class HashTable {
   }
 
   loseloseHashCode(key) {
-    if (typeof key === "number") {
+    if (typeof  key === "number") {
       return key;
     }
 
@@ -69,7 +69,7 @@ class HashTable {
   }
 }
 
-const hash = new HashTable();
+const hash = new HashTable(defaultToString);
 hash.put("Gandalf", "gandalf@email.com");
 hash.put("John", "johnsnow@email.com");
 hash.put("Tyrion", "tyrion@email.com");

@@ -10,7 +10,7 @@ class HashSet extends HashTable {
     super();
   }
 
-  // This method helps us to find the unique values in a hash table
+  // This method helps us find the unique values in a hash table
   toString() {
     if (this.isEmpty()) return "";
 
@@ -18,8 +18,7 @@ class HashSet extends HashTable {
     let objString = `{${keys[0]} => ${this.table[keys[0]].toString()}}`;
     for (let i = 1; i < keys.length; i++) {
       objString = `${objString}, {${keys[i]} => ${this.table[
-        keys[i]
-      ].toString()}}`;
+          keys[i]].toString()}}`;
     }
     return objString;
   }

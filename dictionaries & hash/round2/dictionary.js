@@ -119,3 +119,4 @@ dictionary.set("Tyrion", "tyrion@email.com");
 console.log(dictionary.keys());
 console.log(dictionary.values());
 console.log(dictionary.keyValues());
+console.log(dictionary.toString());
