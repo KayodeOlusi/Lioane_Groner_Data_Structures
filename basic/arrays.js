@@ -5,6 +5,7 @@
 
 // Initialize an array
 let daysOfTheWeek = new Array(); // declare and instantiate a new array
+let array = [1,2,3,4,5];
 daysOfTheWeek = new Array(7); // create and specify the length of the array
 daysOfTheWeek = new Array("Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"); // passing the array elements into its constructor
 
@@ -22,7 +23,7 @@ for (let i = 3; i < 20; i++) {
 var arr = [2, 3, 4, 5, 6, 7, 8];
 
 const arrayLoop = val => {
-  for (i = arr.length; i >= 0; i--) {
+  for (let i = arr.length; i >= 0; i--) {
     arr[i] = arr[i - 1];
   }
   arr[0] = val;
@@ -54,7 +55,7 @@ let arr1 = [-3, -2, -1, 0];
 let arr2 = [1, 2, 3, 4];
 
 const checkArr = () => {
-  for (i = 0; i < arr2.length; i++) {
+  for (let i = 0; i < arr2.length; i++) {
     arr1 = [...arr1, arr2[i]];
   }
   return arr1;
@@ -62,11 +63,11 @@ const checkArr = () => {
 console.log(checkArr());
 
 /*
-using @@iterators to loop and for..of loop
+using @@iterators to loop and for.of loop
 */
 
 // let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-iterator = numbers[Symbol.iterator](); // store the array values into an object
+let iterator = numbers[Symbol.iterator](); // store the array values into an object
 for (const n of iterator) {
   console.log(n);
 }
@@ -117,7 +118,7 @@ copyArray.copyWithin(0, 3); // [4, 5, 6, 4, 5, 6]
 
 // let numbers = [1, 4, 10, 21, 5];
 
-numbers.sort((a, b) => a - b); // if a > b, it returns -1, if b > a, it returns 1, if a = b, it returns 0
+numbers.sort((a, b) => a - b); // if a > b, it returns -1, if b > a return 1, if a = b, it returns 0
 
 /**
  * Manual sorting function
