@@ -1,4 +1,5 @@
 const { LinkedList } = require("./linked.list");
+const { defaultEquals } = require("../../utils");
 
 const Compare = {
   LESS_THAN: -1,
@@ -40,7 +41,7 @@ class SortedLinkedList extends LinkedList {
   }
 }
 
-const linkedList = new LinkedList();
+const linkedList = new SortedLinkedList();
 linkedList.push(1);
 linkedList.push(3);
 linkedList.push(2);

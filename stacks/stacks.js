@@ -56,7 +56,7 @@ class Stack {
 
 // **************************************************
 // Underscore naming convention
-class Stack {
+class StackTwo {
   constructor() {
     this._count = 0;
     this._items = [];
@@ -67,7 +67,7 @@ class Stack {
 // Weakmap() is a datatype to ensure that a property will be private in a class
 const items = new WeakMap(); // we declare the items variable as a Weakmap()
 
-class Stack {
+class StackThree {
   constructor() {
     items.set(this, []);
     // set the items value inside the constructor by setting 'this' as the key and array as the value
