@@ -1,7 +1,7 @@
 const Compare = {
   LESS_THAN: -1,
   BIGGER_THAN: 1,
-  EQUALS: 0,
+  EQUALS: 0
 };
 
 const printNode = value => console.log(value);
@@ -13,15 +13,15 @@ function defaultCompare(a, b) {
   return a < b ? Compare.LESS_THAN : Compare.BIGGER_THAN;
 }
 
-module.exports = class Node {
+class Node {
   constructor(key) {
     this.key = key; // Value of node
     this.left = null; // Left child
     this.right = null; // Right child
   }
-};
+}
 
-module.exports = class BinarySearchTree {
+class BinarySearchTree {
   constructor(compareFn = defaultCompare) {
     this.compareFn = compareFn;
     this.root = null;
@@ -133,7 +133,7 @@ module.exports = class BinarySearchTree {
     }
   }
 
-  // An in-order traversal visits all the nodes of a BST in an ascending order
+  // An in-order traversal visits all the nodes of a BST in ascending order
   // It takes in a callback function to perform something with each node
   inOrderTraverse(callback) {
     this.inOrderTraverseNode(this.root, callback);
@@ -177,25 +177,25 @@ module.exports = class BinarySearchTree {
       callback(node.key);
     }
   }
-};
+}
 
-// const tree = new BinarySearchTree();
-// tree.insert(11)
-// tree.insert(7)
-// tree.insert(15)
-// tree.insert(5)
-// tree.insert(3)
-// tree.insert(9)
-// tree.insert(8)
-// tree.insert(10)
-// tree.insert(13)
-// tree.insert(12)
-// tree.insert(14)
-// tree.insert(20)
-// tree.insert(18)
-// tree.insert(25)
+const tree = new BinarySearchTree();
+tree.insert(11);
+tree.insert(7);
+tree.insert(15);
+tree.insert(5);
+tree.insert(3);
+tree.insert(9);
+tree.insert(8);
+tree.insert(10);
+tree.insert(13);
+tree.insert(12);
+tree.insert(14);
+tree.insert(20);
+tree.insert(18);
+tree.insert(25);
 
-// console.log(tree.preOrderTraverse(printNode));
-// console.log(tree.search(3) ? "key found" : "key not found")
-// console.log(tree.search(22) ? "key found" : "key not found")
-// console.log(tree.search(39) ? "key found" : "key not found")
+console.log(tree.postOrderTraverse(printNode));
+console.log(tree.search(3) ? "key found" : "key not found");
+console.log(tree.search(22) ? "key found" : "key not found");
+console.log(tree.search(39) ? "key found" : "key not found");
