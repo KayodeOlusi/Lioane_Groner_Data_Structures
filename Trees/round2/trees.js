@@ -67,6 +67,83 @@ class BinarySearchTree {
   postOrderTraverse(callback) {
     this.postOrderTraverseNode(this.root, callback);
   }
+
+  min() {
+    return this.minNode(this.root);
+  }
+
+  max() {
+    return this.maxNode(this.root);
+  }
+
+  search(key) {
+    return this.searchNode(this.root, key);
+  }
+
+  remove(key) {
+    this.root = this.removeNode(this.root, key);
+  }
+
+  maxNode(node) {
+    let current = node;
+    while (current != null && current.right != null) {
+      current = current.right;
+    }
+
+    return current;
+  }
+
+  minNode(node) {
+    let current = node;
+    while (current != null && current.left != null) {
+      current = current.left;
+    }
+
+    return current;
+  }
+
+  searchNode(node, key) {
+    if (node == null) return false;
+
+    if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
+      return this.searchNode(node.left, key);
+    } else if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
+      return this.searchNode(node.right, key);
+    } else {
+      return true;
+    }
+  }
+
+  removeNode(node, key) {
+    if (node == null) return null;
+
+    if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
+      node.left = this.removeNode(node.left, key);
+      return node;
+    } else if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
+      node.right = this.removeNode(node.right, key);
+      return node;
+    } else {
+      // case 1, key is a leaf node which means it has no children
+      if (node.left == null && node.right == null) {
+        node = null;
+        return node;
+      }
+      // case 2, key has only one child
+      if (node.left == null) {
+        node = node.right;
+        return node;
+      } else if (node.right == null) {
+        node = node.left;
+        return node;
+      }
+      // case 3, key has two children
+      const aux = this.minNode(node.right);
+      node.key = aux;
+      node.right = this.removeNode(node.right, aux.key);
+      return node;
+    }
+  }
 }
 
 const tree = new BinarySearchTree();
@@ -86,3 +163,5 @@ tree.insert(18);
 tree.insert(25);
 const printNode = (value) => console.log(value);
 tree.inOrderTraverse(printNode);
+
+console.log(tree.search(3) ? "key found" : "key not found");
