@@ -1,7 +1,7 @@
 const { defaultCompare, Compare } = require("../../utils");
 const { Node } = require("../models");
 
-class BinarySearchTree {
+module.exports = class BinarySearchTree {
   constructor(compareFn = defaultCompare) {
     this.root = null;
     this.compareFn = compareFn;
@@ -139,13 +139,14 @@ class BinarySearchTree {
       }
       // case 3, key has two children
       const aux = this.minNode(node.right);
-      node.key = aux;
+      node.key = aux.key;
       node.right = this.removeNode(node.right, aux.key);
       return node;
     }
   }
-}
+};
 
+/*
 const tree = new BinarySearchTree();
 tree.insert(11);
 tree.insert(7);
@@ -164,4 +165,4 @@ tree.insert(25);
 const printNode = (value) => console.log(value);
 tree.inOrderTraverse(printNode);
 
-console.log(tree.search(3) ? "key found" : "key not found");
+console.log(tree.search(3) ? "key found" : "key not found");*/

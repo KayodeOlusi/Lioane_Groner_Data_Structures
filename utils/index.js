@@ -8,6 +8,14 @@ const Compare = {
   EQUALS: 0
 };
 
+const BalanceFactor = {
+  UNBALANCED_RIGHT: 1,
+  SLIGHTLY_UNBALANCED_RIGHT: 2,
+  BALANCED: 3,
+  SLIGHTLY_UNBALANCED_LEFT: 4,
+  UNBALANCED_LEFT: 5
+};
+
 function defaultCompare(a, b) {
   if (a === b) return 0;
   return a < b ? Compare.LESS_THAN : Compare.BIGGER_THAN;
@@ -16,5 +24,6 @@ function defaultCompare(a, b) {
 module.exports = {
   defaultEquals,
   defaultCompare,
+  BalanceFactor,
   Compare
 };
