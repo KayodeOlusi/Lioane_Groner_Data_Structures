@@ -1,3 +1,4 @@
+const { Node } = require("../models");
 const BinarySearchTree = require('./trees');
 const { defaultCompare, BalanceFactor, Compare } = require("../../utils");
 
@@ -124,3 +125,13 @@ class AVLTree extends BinarySearchTree {
     return node;
   }
 }
+
+const tree = new AVLTree();
+tree.insert(70);
+tree.insert(50);
+tree.insert(80);
+tree.insert(72);
+tree.insert(90);
+tree.insert(75);
+
+console.log(tree);
