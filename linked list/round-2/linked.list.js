@@ -139,7 +139,7 @@ class LinkedList {
 }
 
 module.exports = {
-  LinkedList,
+  LinkedList
 };
 
 const linkedList = new LinkedList();

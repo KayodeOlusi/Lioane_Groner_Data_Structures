@@ -8,6 +8,11 @@ const Compare = {
   EQUALS: 0
 };
 
+const Colors = {
+  BLACK: 'BLACK',
+  RED: 'RED'
+};
+
 const BalanceFactor = {
   UNBALANCED_RIGHT: 1,
   SLIGHTLY_UNBALANCED_RIGHT: 2,
@@ -25,5 +30,6 @@ module.exports = {
   defaultEquals,
   defaultCompare,
   BalanceFactor,
-  Compare
+  Compare,
+  Colors
 };
