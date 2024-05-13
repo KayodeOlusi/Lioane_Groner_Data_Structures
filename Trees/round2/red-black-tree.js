@@ -52,7 +52,19 @@ class RedBlackTree extends BinarySearchTree {
           parent.color = Colors.BLACK;
           uncle.color = Colors.BLACK;
           node = grandParent;
-        } else { /* empty */ }
+        } else {
+          // Case 2A: Node is right child of parent - left rotate
+          if (node.parent === node) {
+            this.rotateRR(parent);
+            node = parent;
+            parent = node.parent;
+          }
+          // Case 3A: Node is left child of parent - right rotate
+          this.rotateLL(grandParent);
+          parent.color = Colors.BLACK;
+          grandParent.color = Colors.RED;
+          node = parent;
+        }
       } else {
         // Case B: Parent is a right child
         const uncle = grandParent.left;
@@ -62,11 +74,65 @@ class RedBlackTree extends BinarySearchTree {
           parent.color = Colors.BLACK;
           uncle.color = Colors.BLACK;
           node = grandParent;
-        } else { /* empty */ }
+        } else {
+          // Case 2B: Node is left child of parent - right rotate
+          if (node === parent.left) {
+            this.rotateLL(parent);
+            node = parent;
+            parent = node.parent;
+          }
+          // Case 3B: Node is right child of parent - left rotate
+          this.rotateRR(grandParent);
+          parent.color = Colors.BLACK;
+          grandParent.color = Colors.RED;
+          node = parent;
+        }
       }
     }
 
     this.root.color = Colors.BLACK;
+  }
+
+  rotateLL(node) {
+    const temp = node.left;
+    node.left = temp.right;
+
+    if (temp.right && temp.right.key) {
+      temp.right.parent = node;
+    }
+    temp.parent = node.parent;
+    if (!node.parent) {
+      this.root = temp;
+    } else {
+      if (node === node.parent.left) {
+        node.parent.left = temp;
+      } else {
+        node.parent.right = temp;
+      }
+    }
+    temp.right = node;
+    node.parent = temp;
+  }
+
+  rotateRR(node) {
+    const temp = node.right;
+    node.right = temp.left;
+    
+    if (temp.left && temp.left.key) {
+      temp.left.parent = node;
+    }
+    temp.parent = node.parent;
+    if (!node.parent) {
+      this.root = temp;
+    } else {
+      if (node === node.parent.left) {
+        node.parent.left = temp;
+      } else {
+        node.parent.right = temp;
+      }
+    }
+    temp.left = node;
+    node.parent = temp;
   }
 }
 
