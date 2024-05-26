@@ -32,11 +32,16 @@ function swap(array, a, b) {
   array[b] = temp;
 }
 
+function reverseCompare(compareFn) {
+  return (a, b) => compareFn(b, a);
+}
+
 module.exports = {
   defaultEquals,
   defaultCompare,
   BalanceFactor,
   Compare,
   Colors,
-  swap
+  swap,
+  reverseCompare
 };
