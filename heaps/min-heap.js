@@ -7,18 +7,18 @@ class MinHeap {
   }
 
   getLeftIndex(index) {
-    return (2 * index) + 1;
+    return 2 * index + 1;
   }
 
   getRightIndex(index) {
-    return (2 * index) + 2;
+    return 2 * index + 2;
   }
 
   getParentIndex(index) {
     if (index === 0) {
       return undefined;
     }
-    return Math.floor((index - 1) / 2);
+    return Math.floor(index - 1 / 2);
   }
 
   size() {
@@ -119,5 +119,9 @@ heap.insert(5);
 heap.insert(7);
 heap.insert(4);
 heap.insert(2);
+heap.insert(9);
+heap.insert(8);
+heap.extract();
+console.log(heap.getAsArray());
 
 module.exports = MinHeap;
