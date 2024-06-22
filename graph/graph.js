@@ -49,7 +49,7 @@ class Graph {
   }
 }
 
-const graph = new Graph();
+/*const graph = new Graph();
 const vertices = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
 
 for (let i = 0; i < vertices.length; i++) {
@@ -65,6 +65,8 @@ graph.addEdge("D", "G");
 graph.addEdge("D", "H");
 graph.addEdge("B", "E");
 graph.addEdge("B", "F");
-graph.addEdge("E", "I");
+graph.addEdge("E", "I");*/
 
-console.log(graph.toString());
+module.exports = {
+  Graph
+};

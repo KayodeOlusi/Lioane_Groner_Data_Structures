@@ -59,5 +59,5 @@ class Queue {
 }
 
 module.exports = {
-  Queue,
+  Queue
 };

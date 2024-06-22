@@ -13,6 +13,12 @@ const Colors = {
   RED: 'RED'
 };
 
+const GRAPH_COLORS = {
+  WHITE: 0,
+  GREY: 1,
+  BLACK: 2
+};
+
 const BalanceFactor = {
   UNBALANCED_RIGHT: 1,
   SLIGHTLY_UNBALANCED_RIGHT: 2,
@@ -43,5 +49,6 @@ module.exports = {
   Compare,
   Colors,
   swap,
-  reverseCompare
+  reverseCompare,
+  GRAPH_COLORS
 };
