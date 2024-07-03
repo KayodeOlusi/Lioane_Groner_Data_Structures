@@ -51,7 +51,11 @@ class Stack {
   }
 }
 
-function decimalToBinary(decNumber) {
+module.exports = {
+  Stack
+};
+
+/*function decimalToBinary(decNumber) {
   let stack = new Stack();
   let remainder;
   let number = decNumber;
@@ -93,4 +97,4 @@ function baseConverter(decNumber, base) {
   return res;
 }
 
-console.log(decimalToBinary(233));
+console.log(decimalToBinary(233));*/

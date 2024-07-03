@@ -1,6 +1,6 @@
 const { Queue } = require("../queues/queue2");
 const { GRAPH_COLORS } = require("../utils");
-const { vertices, graph: testGraph } = require("./test");
+const { graph, vertices } = require("./test");
 
 const initializeColor = vertices => {
   const colors = {};
@@ -10,13 +10,20 @@ const initializeColor = vertices => {
   return colors;
 };
 
-const breadthFirstSearch = (graph, startVertex, callback) => {
+const BFS = (graph, startVertex) => {
   const vertices = graph.getVertices();
   const adjList = graph.getAdjList();
   const color = initializeColor(vertices);
   const queue = new Queue();
+  const distances = {};
+  const predecessors = {};
 
   queue.enqueue(startVertex);
+
+  for (let i = 0; i < vertices.length; i++) {
+    distances[vertices[i]] = 0;
+    predecessors[vertices[i]] = null;
+  }
 
   while (!queue.isEmpty()) {
     const u = queue.dequeue();
@@ -27,13 +34,17 @@ const breadthFirstSearch = (graph, startVertex, callback) => {
       const w = neighbours[i];
       if (color[w] === GRAPH_COLORS.WHITE) {
         color[w] = GRAPH_COLORS.GREY;
+        distances[w] = distances[u] + 1;
+        predecessors[w] = u;
         queue.enqueue(w);
       }
     }
     color[u] = GRAPH_COLORS.BLACK;
-    if (callback) callback(u);
   }
+
+  return { distances, predecessors };
 };
 
-const printVertex = vertex => console.log("Visited vertex: " + vertex);
-breadthFirstSearch(testGraph, vertices[0], printVertex);
+const shortestPath = BFS(graph, vertices[0]);
+console.log(shortestPath);
+
