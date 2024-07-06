@@ -1,5 +1,6 @@
 const { Queue } = require("../queues/queue2");
 const { GRAPH_COLORS } = require("../utils");
+const { Stack } = require("../stacks/stack_2");
 const { graph, vertices } = require("./test");
 
 const initializeColor = vertices => {
@@ -46,5 +47,21 @@ const BFS = (graph, startVertex) => {
 };
 
 const shortestPath = BFS(graph, vertices[0]);
-console.log(shortestPath);
+
+const fromVertex = vertices[0];
+for (let i = 1; i < vertices.length; i++) {
+  const toVertex = vertices[i];
+  const path = new Stack();
+  for (let v = toVertex;
+       v !== fromVertex;
+       v = shortestPath.predecessors[v]) {
+    path.push(v);
+  }
+  path.push(fromVertex);
+  let s = path.pop();
+  while (!path.isEmpty()) {
+    s += ' - ' + path.pop();
+  }
+  console.log(s);
+}
 
