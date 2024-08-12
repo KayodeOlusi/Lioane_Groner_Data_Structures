@@ -11,11 +11,6 @@ const dijskra = (graph, src) => {
   const dist = [];
   const visited = [];
 
-  /**
-   * [0, 2, 4, INF, INF, INF]
-   * [true, true, false, false, false, false]
-   */
-
   const { length } = graph;
   for (let i = 0; i < length; i++) {
     dist[i] = INF;
