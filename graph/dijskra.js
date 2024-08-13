@@ -18,8 +18,8 @@ const dijskra = (graph, src) => {
   }
 
   dist[src] = 0;
-  for (let i = 0; i < length - 1; i++) { // 1
-    const u = minDistance(dist, visited); // 1
+  for (let i = 0; i < length - 1; i++) {
+    const u = minDistance(dist, visited); // 3
     visited[u] = true;
 
     for (let v = 0; v < length; v++) {
