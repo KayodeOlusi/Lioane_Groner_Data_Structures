@@ -42,6 +42,14 @@ function reverseCompare(compareFn) {
   return (a, b) => compareFn(b, a);
 }
 
+function createNonSortedArray(size) {
+  const array = [];
+  for (let i = size; i > 0; i--) {
+    array.push(i);
+  }
+  return array;
+}
+
 module.exports = {
   defaultEquals,
   defaultCompare,
@@ -50,5 +58,6 @@ module.exports = {
   Colors,
   swap,
   reverseCompare,
-  GRAPH_COLORS
+  GRAPH_COLORS,
+  createNonSortedArray
 };
