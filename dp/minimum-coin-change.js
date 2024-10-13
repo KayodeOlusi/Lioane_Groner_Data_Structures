@@ -1,6 +1,5 @@
 function minimumCoinChange(coins, amount) {
   const cache = [];
-
   const makeChange = (value) => {
     if (!value) {
       return [];
@@ -25,6 +24,7 @@ function minimumCoinChange(coins, amount) {
     }
     return (cache[value] = min);
   };
+
   return makeChange(amount);
 }
 
